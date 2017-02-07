@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+import Modal from 'react-modal';
 
 import { deleteTasksList, insertTasksList, updateTasksList } from '../actions/tasksLists';
 import { deleteTask, fetchTasks, insertTask, setViewType, updateTask } from '../actions/tasks';
@@ -21,8 +22,13 @@ class TasksPage extends Component {
 			deleteList: {},
 			selectedList: {},
 			selectedTask: {},
-			updateList: {}
+			updateList: {},
+			modalAddListIsOpen: false,
+			modalDeleteListIsOpen: false,
+			modalUpdateListIsOpen: false,
+			modalUpdateTaskIsOpen: false
 		};
+		this.closeDialog = this.closeDialog.bind(this);
 		this.onAddNewTask = this.onAddNewTask.bind(this);
 		this.onChangeViewType = this.onChangeViewType.bind(this);
 		this.onDeleteTask = this.onDeleteTask.bind(this);
@@ -47,9 +53,13 @@ class TasksPage extends Component {
 	}
 
 	// Close an onOpen dialog
-	closeDialog(id) {
-		const dialog = document.querySelector("#" + id);
-		dialog.close();
+	closeDialog() {
+		this.setState({
+			modalAddListIsOpen: false,
+			modalDeleteListIsOpen: false,
+			modalUpdateListIsOpen: false,
+			modalUpdateTaskIsOpen: false
+		});
 	}
 
 	// Add new task
@@ -101,7 +111,7 @@ class TasksPage extends Component {
 
 	// Delete the selected list
 	onDeleteTasksList(list) {
-		this.closeDialog("deleteDialog");
+		this.closeDialog();
 		const { deleteTasksList } = this.props;
 
 		deleteTasksList(list.id);
@@ -110,7 +120,7 @@ class TasksPage extends Component {
 
 	// Insert a new list
 	onInsertNewList(name) {
-		this.closeDialog("insertDialog");
+		this.closeDialog();
 
 		if(name !== '') {
 			const { insertTasksList } = this.props;
@@ -120,35 +130,31 @@ class TasksPage extends Component {
 
 	// Open the "Add List" dialog
 	onOpenAddDialog() {
-		const dialog = document.querySelector('#insertDialog');
-		dialog.showModal();
+		this.setState({modalAddListIsOpen: true});
 	}
 
 	// Open the "Delete List" dialog
 	onOpenDeleteDialog(list) {
-		const dialog = document.querySelector('#deleteDialog');
 		this.setState({
-			deleteList: list
+			deleteList: list,
+			modalDeleteListIsOpen: true
 		});
-		dialog.showModal();
 	}
 
-	// Open the "Update List" dialog
+	// Open the "Update Task" dialog
 	onOpenTaskDialog(list) {
-		const dialog = document.querySelector('#updateTask');
 		this.setState({
+			modalUpdateTaskIsOpen: true,
 			selectedTask: list
 		});
-		dialog.show();
 	}
 
 	// Open the "Update List" dialog
 	onOpenUpdateDialog(list) {
-		const dialog = document.querySelector('#updateDialog');
 		this.setState({
+			modalUpdateListIsOpen: true,
 			updateList: list
 		});
-		dialog.showModal();
 	}
 
 	// Open the selected list and fetch its tasks
@@ -164,7 +170,7 @@ class TasksPage extends Component {
 	// Change the title, due and notes of selected task from a list
 	onUpdateTask(taskId, title, due, notes) {
 		const { updateTask } = this.props;
-		this.closeDialog("updateTask");
+		this.closeDialog();
 		updateTask({tasklist: this.state.selectedList.id, task: taskId, id: taskId, title, due, notes});
 	}
 
@@ -176,7 +182,7 @@ class TasksPage extends Component {
 
 	// Update a selected list
 	onUpdateTasksList(list, newName) {
-		this.closeDialog("updateDialog");
+		this.closeDialog();
 		const { updateTasksList } = this.props;
 
 		updateTasksList(list.id, newName);
@@ -202,6 +208,20 @@ class TasksPage extends Component {
 
 	render() {
 		const { viewType, tasks, tasksLists } = this.props;
+
+		const customStyles = {
+			content : {
+				background: 'transparent',
+				border: '0px',
+				boxShadow: 'none',
+				top : '50%',
+				left : '50%',
+				right : 'auto',
+				bottom : 'auto',
+				marginRight : '-50%',
+				transform : 'translate(-50%, -50%)'
+			}
+		};
 		return (
 			<div className="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded tasks-page">
 				<header className="mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
@@ -241,33 +261,58 @@ class TasksPage extends Component {
 				{/*
 				* DIALOG COMPONENTS
 				*/}
-				<DialogAddList
-					id={"insertDialog"}
-					onCancel={this.closeDialog}
-					onConfirm={this.onInsertNewList}
-				/>
+				<Modal
+					style={customStyles}
+					isOpen={this.state.modalAddListIsOpen}
+					contentLabel="Insert New List"
+				>
+					<DialogAddList
+						id={"insertDialog"}
+						onCancel={this.closeDialog}
+						onConfirm={this.onInsertNewList}
+					/>
+				</Modal>
 
-				<DialogDeleteList
-					id={"deleteDialog"}
-					list={this.state.deleteList}
-					onCancel={this.closeDialog}
-					onConfirm={this.onDeleteTasksList}
-				/>
 
-				<DialogUpdateList
-					id={"updateDialog"}
-					list={this.state.updateList}
-					onCancel={this.closeDialog}
-					onConfirm={this.onUpdateTasksList}
-				/>
+				<Modal
+					style={customStyles}
+					isOpen={this.state.modalDeleteListIsOpen}
+					contentLabel="Delete Task"
+				>
+					<DialogDeleteList
+						id={"deleteDialog"}
+						list={this.state.deleteList}
+						onCancel={this.closeDialog}
+						onConfirm={this.onDeleteTasksList}
+					/>
+				</Modal>
 
-				<DialogUpdateTask
-					id={"updateTask"}
-					task={this.state.selectedTask}
-					onCancel={this.closeDialog}
-					onConfirm={this.onUpdateTask}
-					onUpdateTaskStatus={this.onUpdateTaskStatus}
-				/>
+				<Modal
+					style={customStyles}
+					isOpen={this.state.modalUpdateListIsOpen}
+					contentLabel="Update List"
+				>
+					<DialogUpdateList
+						id={"updateDialog"}
+						list={this.state.updateList}
+						onCancel={this.closeDialog}
+						onConfirm={this.onUpdateTasksList}
+					/>
+				</Modal>
+
+				<Modal
+					style={customStyles}
+					isOpen={this.state.modalUpdateTaskIsOpen}
+					contentLabel="Update Task"
+				>
+					<DialogUpdateTask
+						id={"updateTask"}
+						task={this.state.selectedTask}
+						onCancel={this.closeDialog}
+						onConfirm={this.onUpdateTask}
+						onUpdateTaskStatus={this.onUpdateTaskStatus}
+					/>
+				</Modal>
 			</div>
 		);
 	}

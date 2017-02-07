@@ -24,13 +24,13 @@ class DialogDeleteList extends Component {
 		const { id, list } = this.props;
 		const title = (list) ? list.title : '';
 		return (
-			<dialog id={id} className="mdl-dialog dialog">
+			<div id={id} className="mdl-dialog dialog">
 				<h4 className="mdl-dialog__title title">Delete list <strong>"{title}"</strong>?</h4>
 				<div className="mdl-dialog__actions">
 					<button type="submit" className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.handleConfirmClick}>Yes</button>
 					<button type="button" className="mdl-button close" onClick={this.handleCancel}>No</button>
 				</div>
-			</dialog>
+			</div>
 		);
 	}
 	

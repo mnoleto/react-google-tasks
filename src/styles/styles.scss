@@ -24,6 +24,11 @@ body {
 
 #app {
 	width: 100%;
+	z-index: 1;
+}
+
+.ReactModalPortal {
+	z-index: 100000;
 }
 
 div {

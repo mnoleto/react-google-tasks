@@ -26,7 +26,7 @@ class DialogUpdateList extends Component {
 		const { id, list } = this.props;
 		const title = (list) ? list.title : '';
 		return (
-			<dialog id={id} className="mdl-dialog dialog">
+			<div id={id} className="mdl-dialog dialog">
 				<h4 className="mdl-dialog__title title">Update list <strong>"{title}"</strong> as:</h4>
 				<div className="mdl-dialog__content">
 					<form name="list-name-form" method="post" onSubmit={this.handleSubmit}>
@@ -38,7 +38,7 @@ class DialogUpdateList extends Component {
 						</div>
 					</form>
 				</div>
-			</dialog>
+			</div>
 		);
 	}
 	
