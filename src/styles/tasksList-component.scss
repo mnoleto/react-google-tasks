@@ -1,0 +1,63 @@
+$bg-grey-medium: #37474f;
+$bg-grey-dark: #263238;
+
+.task-list {
+	background-color: $bg-grey-medium;
+	color: #848e93;
+	text-align: center;
+	.new-list-button {
+		background-color: #37474f;
+		color: #fff;
+		height: auto;
+		margin: 5% 0 0 5%;
+		padding: 10px 0;
+		width: 90%;
+		&:hover {
+			background-color: lighten(#37474f, 5%);
+		}
+	}
+	nav {
+		margin: 30px 15px 0;
+		text-align: left;
+	}
+	li.list-item {
+		color: #fff;
+		font-size: 120%;
+		padding: 0 60px 0 5px;
+		position: relative;
+	}
+	i {
+		color: #6f8692;
+		font-size: 140%;
+		vertical-align: top;
+	}
+	h2 {
+		font-size: 120%;
+		margin: 20px 0 0;
+	}
+	a {
+		font-size: 90%;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.list-button {
+		background-color: transparent;
+		border: 0px;
+		margin: 0 5px 0 0;
+		padding: 0px;
+	}
+	.action-buttons {
+		position: absolute;
+		right: 0px;
+		li {
+			display: inline-block;
+		}
+	}
+	.edit-button, .delete-button {
+		margin: 0px;
+		padding: 0px;
+		min-width: 30px;
+	}
+}

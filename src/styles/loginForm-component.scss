@@ -1,0 +1,54 @@
+.login-form {
+	display: block;
+	height: 100vh;
+}
+
+.demo-card-wide {
+	&.mdl-card {
+		box-shadow: none;
+		height: 100vh;
+		width: 95%;
+		@media (min-width: 992px) {
+			margin: 50px auto 0 auto;
+		    width: 512px;
+		}
+	}
+	&  > .mdl-card__title {
+		color: #fff;
+		height: 200px;
+		background: url('../images/welcome_card.jpg') center / cover;
+		@media (min-width: 992px) {
+		    height: 176px;
+		}
+	}
+	&  > .mdl-card__menu {
+		color: #fff;
+	}
+	.mdl-card__supporting-text {
+		margin: 40px 0;
+		@media (min-width: 992px) {
+			margin: 0px;
+		}
+	}
+	.mdl-card--border {
+		text-align: center;
+	}
+	h2 {
+		font-size: 200%;
+	}
+	p {
+		font-size: 100%;
+		line-height: 1.6;
+	}
+	button {
+		background: rgb(63,81,181);
+		color: #fff !important;
+		font-size: 120%;
+		height: auto;
+		margin: 20px 0;
+		padding: 20px 15px;
+		@media (min-width: 992px) {
+			padding: 10px 15px;
+		}
+	}
+}

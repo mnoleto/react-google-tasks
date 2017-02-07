@@ -1,0 +1,137 @@
+.tasks-container {
+	width: 100%;
+	ol ol {
+		clear: left;
+		float: left;
+		padding-left: 10px;
+	}
+	.primary-tasks {
+		width: 100%;
+		ol {
+			width: 100%;
+		}
+	}
+	li {
+		line-height: 1.2;
+		margin: 0px 15px 5px 15px;
+	}
+	.task-item {
+		border: #ccc 1px solid;
+		display: table;
+		padding: 6px 50px 6px 5px;
+		width: 100%;
+		vertical-align: top;
+		&:hover {
+			background-color: rgba(224,64,251, 0.2);
+		}
+		&.selected {
+			background-color: rgba(224,64,251, 0.4);
+		}
+	}
+	.task-checkbox {
+		width: auto;
+	}
+	input[type="checkbox"], .task-info, .notes {
+		display: table-cell;
+	}
+	input[type="checkbox"] {
+		margin-right: 8px;
+	}
+	.task-info {
+		padding-right: 50px;
+		width: 51%;
+	}
+	.task-title {
+		background-color: transparent;
+		border: 0px;
+		display: block;
+		font-size: 110%;
+		height: 100%;
+		width: 100%;
+		&:focus {
+			outline: none;
+		}
+	}
+	.notes a, .due a {
+		color: rgba(0,0,0,.6);
+		font-weight: 400;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.notes {
+		border-left: #ccc 1px dashed;
+		padding-left: 15px;
+		width: 50%;
+		a {
+			font-size: 110%;
+		}
+	}
+	.due {
+		display: table-row;
+		font-size: 110%;
+		padding-top: 3px;
+		width: 100%;
+	}
+	.completed .task-title {
+		text-decoration: line-through;
+	}
+	.task-action-button {
+		display: none;
+		position: absolute;
+		left: 50%;
+		top: 0px;
+		-webkit-transform: translateX(-120%); 
+		-moz-transform: translateX(-120%); 
+		-ms-transform: translateX(-120%); 
+		-o-transform: translateX(-120%); 
+		transform: translateX(-120%); 
+		button {
+			background-color: transparent;
+			border: 0px;
+			box-shadow: none;
+			height: 28px;
+			min-width: 30px;
+			width: 30px;
+			i {
+				font-size: 80%;
+			}
+			&:hover {
+				color: #fff;
+			}
+		}
+	}
+	.selected .task-action-button {
+		display: block;
+	}
+	.task-item:hover .task-action-button {
+		display: block;
+	}
+	.add-task-button {
+		left: 50%;
+		position: relative;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+		transform: translateX(-50%);
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+	.empty-message {
+		margin-left: 15px;
+	}
+	.undo-button {
+		background-color: transparent;
+		border: 0px;
+		i {
+			font-size: 140%;
+		}
+	}
+	.due-title {
+		font-weight: 400;
+		margin-left: 20px;
+	}
+}

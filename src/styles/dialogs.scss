@@ -1,0 +1,65 @@
+.dialog {
+	width: 90%;
+	.title {
+		margin-bottom: 10px;
+		text-align: center;
+	}
+	.actions {
+		margin-top: 15px;
+	}
+	.name-input {
+		border: 0px;
+		border-bottom: #ccc 1px solid;
+		font-size: 120%;
+		line-height: 2em;
+		padding: 5px 10px;
+		width: 100%;
+	}
+	@media (min-width: 992px) {
+	    width: 50%;
+	}
+}
+
+#updateTask {
+	position: absolute;
+	top: 50%;
+	z-index: 1000;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	.task-title-container {
+		background-color: rgba(224,64,251, 0.4);
+		border-radius: 4px;
+		display: table;
+		margin-bottom: 20px;
+		padding: 10px 10px;
+		width: 100%;
+		&.completed {
+			text-decoration: line-through;
+		}
+		input[type="checkbox"] {
+			display: table-cell;
+		}
+		.task-title {
+			display: table-cell;
+			margin-left: 5px;
+			width: 100%;
+		}
+	}
+	.datepicker, textarea {
+		border: #ccc 1px solid;
+		border-radius: 4px;
+		font-size: 120%;
+		line-height: 2em;
+		margin-bottom: 15px;
+		padding: 5px 10px;
+		width: 100%;
+	}
+	label {
+		display: block;
+		margin-bottom: 5px;
+		width: 100%;
+	}
+}

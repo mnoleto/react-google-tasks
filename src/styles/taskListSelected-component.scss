@@ -1,0 +1,30 @@
+.toolbar {
+	background-color: rgb(63,81,181);
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	margin-bottom: 20px;
+	padding: 10px 0;
+	position: relative;
+	width: 100%;
+}
+
+.tasks-main-content {
+	padding: 15px 0px;
+	h3 {
+		font-size: 200%;
+		font-weight: 300;
+		padding: 0 15px;
+	}
+	menu {
+		li {
+			display: inline-block;
+		}
+		button {
+			background-color: transparent;
+			border: 0px;
+			cursor: pointer;
+			padding: 10px 10px;
+		}
+	}
+}

@@ -1,0 +1,15 @@
+.tasks-toolbar-viewType {
+	margin: 0px 15px 0 10px;
+	button {
+		background-color: transparent;
+		border: 0px;
+		color: #fff;
+		margin: 0 5px;
+		padding: 10px;
+	}
+	.active-filter, button:hover {
+		background-color: #efefef;
+		border-radius: 15px;
+		color: #666;
+	}
+}
