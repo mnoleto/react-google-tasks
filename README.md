@@ -11,8 +11,12 @@ Featuring universal Redux, React Router, React Router Redux Hot reloading, SASS 
 2. **Install dependencies**. `npm install`.
 3. **Run the setup script**. `npm run setup`
 4. **Run in watch mode**. `npm start -s`
-4. **Run the deploy**. `npm run build`
+5. **Run the deploy**. `npm run build`
 This will run the automated build process, start up a webserver, and open the application in your default browser.
+
+## Google key authentication
+To uses the Google standard API you must include an API Key at /src/config/secrets.js and on the credentials page you must enable OAuth 2.0 client IDs and authorize the URL of the client application: Authorize Javascript origins and Authorize redirect URLs.
+[Get a Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 ##Technologies
 
