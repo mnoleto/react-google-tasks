@@ -160,6 +160,9 @@ class TasksPage extends Component {
 	// Open the selected list and fetch its tasks
 	onOpenTasksList(list) {
 		const { fetchTasks } = this.props;
+		document.querySelector('.task-list').classList.remove('is-visible');
+		document.querySelector('.mdl-layout__obfuscator').classList.remove('is-visible');
+		
 		this.setState({
 			selectedList: list
 		});
