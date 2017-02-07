@@ -8,13 +8,11 @@ import initialState from './initialState';
 // Note that I'm using Object.assign to create a copy of current state
 // and update values on the copy.
 export default function loginReducer(state = initialState.user, action) {
-  let newState;
+	switch (action.type) {
+		case CREATE_SESSION_SUCCESS:
+			return objectAssign({}, state, {authenticated: true});
 
-  switch (action.type) {
-    case CREATE_SESSION_SUCCESS:
-      return objectAssign({}, state, {authenticated: true});
-
-    default:
-      return state;
-  }
+		default:
+			return state;
+	}
 }

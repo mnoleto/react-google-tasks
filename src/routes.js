@@ -3,8 +3,8 @@ import { Route, IndexRoute } from 'react-router';
 import fetchTasksLists from './services/fetchTasksLists';
 
 import App from './components/App';
-import LoginPage from './containers/LoginPage';
-import TasksPage from './containers/TasksPage';
+import Login from './containers/LoginPage';
+import Tasks from './containers/TasksPage';
 import NotFoundPage from './components/NotFoundPage';
 
 export default (store) => {
@@ -31,8 +31,8 @@ export default (store) => {
 
 	return (
 		<Route path="/" component={App}>
-			<IndexRoute component={TasksPage} onEnter={requireAuth} fetchData={fetchTasksLists} />
-			<Route path="login" component={LoginPage} onEnter={redirectAuth} />
+			<IndexRoute component={Tasks} onEnter={requireAuth} fetchData={fetchTasksLists} />
+			<Route path="login" component={Login} onEnter={redirectAuth} />
 			<Route path="*" component={NotFoundPage}/>
 		</Route>
 	);

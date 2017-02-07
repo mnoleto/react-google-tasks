@@ -10,7 +10,8 @@ Featuring universal Redux, React Router, React Router Redux Hot reloading, SASS 
 1. **Clone the project**. `git clone https://github.com/mnoleto/react-google-tasks.git`.
 2. **Install dependencies**. `npm install`.
 3. **Run the setup script**. `npm run setup`
-4. **Run the example app**. `npm start -s`
+4. **Run in watch mode**. `npm start -s`
+4. **Run the deploy**. `npm run build`
 This will run the automated build process, start up a webserver, and open the application in your default browser.
 
 ##Technologies

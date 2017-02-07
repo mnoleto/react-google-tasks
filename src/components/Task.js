@@ -37,7 +37,7 @@ class Task extends Component {
 		return el;
 	}
 
-	handleCheckboxChange(e) {
+	handleCheckboxChange() {
 		const { task, onUpdateTaskStatus } = this.props;
 		const taskId = task.id;
 
@@ -63,10 +63,9 @@ class Task extends Component {
 	}
 
 	handleTaskClick(e) {
-		const { task } = this.props;
 		let elements = document.querySelectorAll('.task-item');
 		[].forEach.call(elements, function(el) {
-		    el.classList.remove("selected");
+			el.classList.remove("selected");
 		});
 
 		const parent = this.findAncestor(e.target, 'task-item');
@@ -93,11 +92,11 @@ class Task extends Component {
 		this.setState({title: e.target.value});
 
 		clearTimeout(this.timer);
-		this.timer = setTimeout(this.handleTitleBlur, 3000);
+		this.timer = setTimeout(this.handleTitleBlur, 1000);
 	}
 
 	render() {
-		const { task, onOpenTaskEdition } = this.props;
+		const { task } = this.props;
 
 		let tk;
 		if(!task) tk = {id: '', title: '', status: 'needsAction'};

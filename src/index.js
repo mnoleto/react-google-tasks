@@ -7,7 +7,7 @@ import { Router, browserHistory } from 'react-router';
 import createRoutes from './routes';
 import configureStore from './store/configureStore';
 import { syncHistoryWithStore } from 'react-router-redux';
-import fetchGoogleAuth from './services/fetchGoogleAuth';
+import googleAuth from './services/fetchGoogleAuth';
 import fetchDataForRoute from './utils/fetchDataForRoute';
 import * as types from './constants/actionTypes';
 import initialState from './reducers/initialState';
@@ -43,8 +43,11 @@ function onUpdate() {
 		});
 }
 
+window.gapi = null;
 window.handleClientLoad = () => {
-	fetchGoogleAuth(true, () => {
+	window.gapi = (gapi) ? gapi : null;
+
+	googleAuth(true, () => {
 		// initialState.user.authenticated = true;
 		store.dispatch({ type: types.CREATE_SESSION_SUCCESS });
 
@@ -56,4 +59,4 @@ window.handleClientLoad = () => {
 			</Provider>, document.getElementById('app')
 		);
 	});
-}
+};

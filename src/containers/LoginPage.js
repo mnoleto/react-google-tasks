@@ -10,7 +10,7 @@ export const LoginPage = ({ actions }) => {
 				onLogin={actions.createSession}
 			/>
 		);
-}
+};
 
 LoginPage.propTypes = {
 	authenticated: PropTypes.bool.isRequired,

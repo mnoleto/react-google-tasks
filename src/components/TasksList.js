@@ -6,7 +6,7 @@ import TasksListItem from '../components/TasksListItem';
 const TasksList = ({ tasksLists, onDeleteTasksList, onOpenTasksList, onUpdateTasksList }) => {
 	let tasksList;
 	if(tasksLists && tasksLists.length > 0) {
-		tasksList = tasksLists.map(function(list, index) {
+		tasksList = tasksLists.map(function(list) {
 			return (
 				<TasksListItem key={list.id}
 					list={list}
@@ -26,7 +26,7 @@ const TasksList = ({ tasksLists, onDeleteTasksList, onOpenTasksList, onUpdateTas
 			</ul>
 		</nav>
 	);
-}
+};
 
 TasksList.propTypes = {
 	onDeleteTasksList: PropTypes.func.isRequired,

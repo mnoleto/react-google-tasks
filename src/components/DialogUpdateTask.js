@@ -14,7 +14,7 @@ class DialogUpdateTask extends Component {
 			notes: '',
 			status: '',
 			title: ''
-		}
+		};
 
 		this.handleCancel = this.handleCancel.bind(this);
 		this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
@@ -41,7 +41,7 @@ class DialogUpdateTask extends Component {
 		onCancel(id);
 	}
 
-	handleCheckboxChange(e) {
+	handleCheckboxChange() {
 		const { task, onUpdateTaskStatus } = this.props;
 		const taskId = task.id;
 
@@ -108,7 +108,7 @@ class DialogUpdateTask extends Component {
 						<label htmlFor="datepicker">Due date:</label>
 						<DatePicker
 							className="datepicker"
-							dateFormat='DD/MM/YYYY'
+							dateFormat="DD/MM/YYYY"
 							id="datepicker"
 							onChange={this.handleChangeDate}
 							selected={this.state.due}

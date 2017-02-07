@@ -14,6 +14,6 @@ const TaskToolbarActions = () => {
 			<a className="mdl-navigation__link" href="">Print list</a>*/}
 		</div>
 	);
-}
+};
 
 export default TaskToolbarActions;

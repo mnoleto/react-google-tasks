@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import { deleteTasksList, insertTasksList, updateTasksList } from '../actions/tasksLists';
 import { deleteTask, fetchTasks, insertTask, setViewType, updateTask } from '../actions/tasks';
@@ -40,12 +39,6 @@ class TasksPage extends Component {
 		this.onUpdateTaskStatus = this.onUpdateTaskStatus.bind(this);
 	}
 
-	// Close an onOpen dialog
-	closeDialog(id) {
-		const dialog = document.querySelector("#" + id);
-		dialog.close();
-	}
-
 	componentWillReceiveProps(nextProps) {
 		// Select the first list when the page loads
 		if(nextProps.tasksLists && nextProps.tasksLists.length > 1 && Object.keys(this.state.selectedList).length === 0 && this.state.selectedList.id !== nextProps.tasksLists[0].id ) {
@@ -53,8 +46,14 @@ class TasksPage extends Component {
 		}
 	}
 
+	// Close an onOpen dialog
+	closeDialog(id) {
+		const dialog = document.querySelector("#" + id);
+		dialog.close();
+	}
+
 	// Add new task
-	onAddNewTask(title, parent) {
+	onAddNewTask(title) {
 		const { tasks, insertTask } = this.props;
 		if(tasks.length > 0) {
 			// Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
@@ -208,7 +207,7 @@ class TasksPage extends Component {
 				<header className="mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
 					<button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" onClick={this.toggleMenu}>
 						<i className="material-icons">more_vert</i>
-						<span className="mdl-button__ripple-container"><span className="mdl-ripple"></span></span>
+						<span className="mdl-button__ripple-container"><span className="mdl-ripple" /></span>
 					</button>
 				</header>
 
@@ -225,10 +224,6 @@ class TasksPage extends Component {
 					/>
 				</div>
 
-				{/*
-				* SELECTED TASK LIST COMPONENT
-				* responsible for show the tasks of the selected list
-				*/}
 				<TaskListSelected
 					list={this.state.selectedList}
 					viewType={viewType}
@@ -241,7 +236,7 @@ class TasksPage extends Component {
 					onUpdateTaskStatus={this.onUpdateTaskStatus}
 				/>
 
-				<div className="mdl-layout__obfuscator" onClick={this.toggleMenu}></div>
+				<div className="mdl-layout__obfuscator" onClick={this.toggleMenu} />
 				
 				{/*
 				* DIALOG COMPONENTS
@@ -295,12 +290,12 @@ TasksPage.propTypes = {
 
 function filterTasksByStatus(tasks, viewType) {
 	if(tasks && viewType === 'completed') {
-		return tasks.filter(function(task, index) {
-			return (task.status === 'completed' && !task.deleted)
+		return tasks.filter(function(task) {
+			return (task.status === 'completed' && !task.deleted);
 		});
 	} else if(tasks && viewType === 'trash') {
-		return tasks.filter(function(task, index) {
-			return (task.deleted)
+		return tasks.filter(function(task) {
+			return (task.deleted);
 		});
 	} else {
 		return tasks;

@@ -1,8 +1,8 @@
-import React, { PropTypes, Components } from 'react';
+import React, { PropTypes } from 'react';
 import '../styles/taskListSelected-component.scss';
 
 import Tasks from '../components/Tasks';
-import TasksToolbarActions from '../components/TasksToolbarActions';
+// import TasksToolbarActions from '../components/TasksToolbarActions';
 import TasksToolbarViewType from '../components/TasksToolbarViewType';
 
 const TaskListSelected = ({ list, onAddNewTask, onChangeViewType, onDeleteTask, onUpdateTask, onUpdateTaskStatus, onOpenTaskEdition, tasks, viewType }) => {
@@ -31,7 +31,7 @@ const TaskListSelected = ({ list, onAddNewTask, onChangeViewType, onDeleteTask, 
 			/>
 		</div>
 	);
-}
+};
 
 TaskListSelected.propTypes = {
 	list: PropTypes.object.isRequired,

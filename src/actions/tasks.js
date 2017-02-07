@@ -31,12 +31,12 @@ export function fetchTasks(taskListId, showCompleted = true, showDeleted = false
 		dispatch(fetchTasksRequest(taskListId, showCompleted, showDeleted));
 
 		let promise = new Promise((resolve, reject) => {
-			gapi.client.tasks.tasks.list({
+			window.gapi.client.tasks.tasks.list({
 				tasklist: taskListId,
 				showCompleted,
 				showDeleted
 			}).execute(res => (res.error) ? reject(res.error) : resolve(res));
-		})
+		});
 
 		return promise.then(function(res) {
 			dispatch(fetchTasksSuccess(res.items));
@@ -76,8 +76,8 @@ export function insertTask(data) {
 		dispatch(insertTaskRequest(data));
 
 		let promise = new Promise((resolve, reject) => {
-			gapi.client.tasks.tasks.insert(data).execute(res => (res.error) ? reject(res.error) : resolve(res));
-		})
+			window.gapi.client.tasks.tasks.insert(data).execute(res => (res.error) ? reject(res.error) : resolve(res));
+		});
 
 		return promise.then(function(res) {
 			dispatch(insertTaskSuccess(res));
@@ -116,11 +116,11 @@ export function deleteTask(taskListId, taskId) {
 		dispatch(deleteTaskRequest(taskId));
 
 		let promise = new Promise((resolve, reject) => {
-			gapi.client.tasks.tasks.delete({
+			window.gapi.client.tasks.tasks.delete({
 				tasklist: taskListId,
 				task: taskId
 			}).execute(res => (res.error) ? reject(res.error) : resolve(res));
-		})
+		});
 
 		return promise.then(function(res) {
 			dispatch(deleteTaskSuccess(res));
@@ -161,8 +161,8 @@ export function updateTask(data) {
 		dispatch(updateTaskRequest(data));
 
 		let promise = new Promise((resolve, reject) => {
-			gapi.client.tasks.tasks.update(data).execute(res => (res.error) ? reject(res.error) : resolve(res));
-		})
+			window.gapi.client.tasks.tasks.update(data).execute(res => (res.error) ? reject(res.error) : resolve(res));
+		});
 
 		return promise.then(function(res) {
 			dispatch(updateTaskSuccess(res));

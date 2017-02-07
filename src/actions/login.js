@@ -1,6 +1,5 @@
 import * as types from '../constants/actionTypes';
-import { push } from 'react-router-redux';
-import fetchGoogleAuth from '../services/fetchGoogleAuth';
+import googleAuth from '../services/fetchGoogleAuth';
 
 // Action Creators
 export function createSessionRequest() {
@@ -23,11 +22,11 @@ export function createSessionFailure(data) {
 }
 
 // thunk for create a user session
-export function createSession(imediate) {
+export function createSession() {
   return (dispatch) => {
     dispatch(createSessionRequest());
 
-    return fetchGoogleAuth(false, () => {
+    return googleAuth(false, () => {
       dispatch(createSessionSuccess());
     }, () => {
       dispatch(createSessionFailure({ error: 'Oops! Something went wrong and we couldn\'t login yout user'}));

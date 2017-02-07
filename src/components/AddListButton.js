@@ -6,7 +6,7 @@ const AddListButton = (props) => {
 			New List
 		</button>
   );
-}
+};
 
 AddListButton.propTypes = {
 	onClickButton: PropTypes.func.isRequired

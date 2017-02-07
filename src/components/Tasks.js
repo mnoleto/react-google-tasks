@@ -7,7 +7,7 @@ class Tasks extends Component {
 		super(props);
 		this.state = {
 			tasks: []
-		}
+		};
 		this.handleAddTaskClick = this.handleAddTaskClick.bind(this);
 	}
 
@@ -25,7 +25,7 @@ class Tasks extends Component {
 	}
 
 	render() {
-		const { tasks, onAddNewTask, onDeleteTask, onUpdateTask, onUpdateTaskStatus, onOpenTaskEdition, viewType } = this.props;
+		const { onAddNewTask, onDeleteTask, onUpdateTask, onUpdateTaskStatus, onOpenTaskEdition, viewType } = this.props;
 		
 		let tasksElements = [];
 		if(this.state.tasks.length > 0) {
@@ -33,7 +33,7 @@ class Tasks extends Component {
 				// Recreate arrays to group tasks by date
 				let byday = {}; // New tasks array
 				let noDueDate = []; // The tasks without date will be placed in a different array
-				this.state.tasks.map(function groupday(value, index, array) {
+				this.state.tasks.map(function groupday(value) {
 					if(value.due) {
 						let d = new Date(value['due']);
 						d = Math.floor(d.getTime()/(1000*60*60*24));
@@ -60,7 +60,7 @@ class Tasks extends Component {
 						let due = new Date(value.due);
 						tasksElements.push( <div className="due-title" key={index + value.due}><strong>{due.getDate() + '/' + (due.getMonth() + 1) + '/' + due.getFullYear()}</strong></div> );
 						
-						let list = value.tasks.map(function(task, i) {
+						let list = value.tasks.map(function(task) {
 							return (
 								<Task
 									key={task.id}
@@ -71,7 +71,7 @@ class Tasks extends Component {
 									onUpdateTaskStatus={onUpdateTaskStatus}
 									onOpenTaskEdition={onOpenTaskEdition}
 								/>
-							)
+							);
 						});
 						tasksElements.push(<ol key={index} className="mdl-list primary-tasks">{list}</ol>);
 						
@@ -81,7 +81,7 @@ class Tasks extends Component {
 				if(noDueDate.length > 0) {
 					tasksElements.push( <div className="due-title" key={"noduetitle"}><strong>No due data</strong></div> );
 					// Loop through the tasks without due date
-					let list = noDueDate.map(function(task, i) {
+					let list = noDueDate.map(function(task) {
 						return (
 							<Task
 								key={task.id}
@@ -92,13 +92,13 @@ class Tasks extends Component {
 								onUpdateTaskStatus={onUpdateTaskStatus}
 								onOpenTaskEdition={onOpenTaskEdition}
 							/>
-						)
+						);
 					});
 					tasksElements.push(<ol key={"noduelist"} className="mdl-list primary-tasks">{list}</ol>);
 				}
 				
 			} else {
-				let list = this.state.tasks.map(function(value, index) {
+				let list = this.state.tasks.map(function(value) {
 					return (
 						<Task
 							key={value.id}

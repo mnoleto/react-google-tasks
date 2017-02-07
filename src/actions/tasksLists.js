@@ -28,8 +28,8 @@ export function insertTasksList(title) {
 		dispatch(insertTasksListRequest());
 
 		let promise = new Promise((resolve, reject) => {
-			gapi.client.tasks.tasklists.insert({ title }).execute(res => (res.error) ? reject(res.error) : resolve(res));
-		})
+			window.gapi.client.tasks.tasklists.insert({ title }).execute(res => (res.error) ? reject(res.error) : resolve(res));
+		});
 
 		return promise.then(function(res) {
 			dispatch(insertTasksListSuccess(res));
@@ -68,10 +68,10 @@ export function deleteTasksList(taskListId) {
 		dispatch(deleteTasksListRequest(taskListId));
 
 		let promise = new Promise((resolve, reject) => {
-			gapi.client.tasks.tasklists.delete({
+			window.gapi.client.tasks.tasklists.delete({
 				tasklist: taskListId
 			}).execute(res => (res.error) ? reject(res.error) : resolve(res));
-		})
+		});
 
 		return promise.then(function(res) {
 			dispatch(deleteTasksListSuccess(res));
@@ -114,12 +114,12 @@ export function updateTasksList(taskListId, title) {
 		dispatch(updateTasksListRequest(taskListId, title));
 
 		let promise = new Promise((resolve, reject) => {
-			gapi.client.tasks.tasklists.update({
+			window.gapi.client.tasks.tasklists.update({
 				tasklist: taskListId,
 				id: taskListId,
 				title
 			}).execute(res => (res.error) ? reject(res.error) : resolve(res));
-		})
+		});
 
 		return promise.then(function(res) {
 			dispatch(updateTasksListSuccess(res));
